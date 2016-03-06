@@ -3,7 +3,7 @@ import sys
 from OpenGL.GLUT import *
 from OpenGL.GL import *
 
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 PROMPT = ("Press keys '1' - '0' to start callbacks",
           "Press ESCAPE to exit.")

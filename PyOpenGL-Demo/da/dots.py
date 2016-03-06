@@ -1,23 +1,23 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
 	raise Exception
 
 import string
-__version__ = string.split('$Revision: 1.1.1.1 $')[1]
-__date__ = string.join(string.split('$Date: 2007/02/15 19:25:28 $')[1:3], ' ')
+__version__ = '$Revision: 1.1.1.1 $'.split()[1]
+__date__ = '$Date: 2007/02/15 19:25:28 $'.split()[1:3]
 __author__ = 'Tarn Weisner Burton <twburton@users.sourceforge.net>'
 
 try:
 	from numpy import *
 	from numpy.random import *
-except ImportError, err:
+except ImportError:
 	try: 
 		from Numeric import *
 		from RandomArray import *
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import string, sys
@@ -107,8 +107,8 @@ def main():
 	glutKeyboardFunc(keyboard)
 	glutMainLoop()
 
-print "Use the mouse buttons to control some of the dots."
-print "Hit any key to quit."
+print("Use the mouse buttons to control some of the dots.")
+print("Hit any key to quit.")
 main()
 
 

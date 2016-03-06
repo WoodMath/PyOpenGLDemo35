@@ -10,8 +10,8 @@
 """
 
 import string
-__version__ = '$Revision: 1.4 $'.split()
-__date__ = '$Date: 2008/09/05 20:23:33 $'.split()
+__version__ = '$Revision: 1.4 $'.split()[1]
+__date__ = '$Date: 2008/09/05 20:23:33 $'.split()[1:3]
 __author__ = 'Tarn Weisner Burton <twburton@users.sourceforge.net>'
 
 import OpenGL 

@@ -1,4 +1,7 @@
 __pycache__/*
+PyOpenGL-Demo/__pycache__/*
+PyOpenGL-Demo/GLUT/__pycache__/*
+PyOpenGL-Demo/GLUT/tom/__pycache__/*
 .DS_STORE
 .Trashes
 Thumbs.db
