@@ -1,4 +1,4 @@
-#!
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
@@ -29,7 +29,7 @@ import sys
 try:
 	import Numeric
 except:
-	print "This demo requires the Numeric extension, sorry"
+	print("This demo requires the Numeric extension, sorry")
 	sys.exit()
 from Image import *
 from OpenGL.GL import *

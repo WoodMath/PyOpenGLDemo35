@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
@@ -13,11 +13,11 @@ if __name__ == '__build__':
 
 try:
 	import numpy as Numeric
-except ImportError, err:
+except ImportError:
 	try: 
 		import Numeric
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import FFT
@@ -38,7 +38,7 @@ class Test:
 		output=Numeric.resize(Numeric.array(0,),c.shape)
 
 		for iter in range(maxiter):
-			print "iter",iter
+			print("iter",iter)
 			z=z*z+c
 			finished=Numeric.greater(abs(z),2.0)
 			c=Numeric.where(finished,0+0j,c)
@@ -49,12 +49,12 @@ class Test:
 ##      output * output * 1000
 		output = (output + (256*output) + (256**2)*output)*8
 		self.mandel = output.tostring()#"raw", "RGBX", 0, -1)
-		print len(self.mandel)
+		print(len(self.mandel))
 
 	def createImage(self):
 		self.im = Image.new("RGB", (w/2,h/2))
 		self.draw(-2.1, 0.7, -1.2, 1.2)
-		print len(self.im.tostring("raw", "RGBX", 0, -1))
+		print(len(self.im.tostring("raw", "RGBX", 0, -1)))
 		self.im.fromstring(self.mandel, "raw", "RGBX", 0, -1)
 
 	def createLabel(self):
