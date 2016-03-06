@@ -1,4 +1,4 @@
-#! /usr/bin/env python3.4
+#!/usr/bin/env python3.4
 # * 3-D gear wheels.  This program is in the public domain.
 # * Brian Paul
 # * Conversion to GLUT by Mark J. Kilgard 

@@ -1,4 +1,4 @@
-#! /usr/bin/env python3.4
+#!/usr/bin/env python3.4
 """GLUT replacement for the original checker.py demonstration code
 
 Note:

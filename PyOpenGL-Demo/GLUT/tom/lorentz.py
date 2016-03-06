@@ -1,4 +1,4 @@
-#! /usr/bin/env python3.4
+#!/usr/bin/env python3.4
 """GLUT replacement for the original lorentz.py demonstration code
 
 This is the original lorentz.py demo, with a few changes to

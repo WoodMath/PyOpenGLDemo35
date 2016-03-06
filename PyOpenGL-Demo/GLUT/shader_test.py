@@ -1,4 +1,4 @@
-#! /usr/bin/env python3.4
+#!/usr/bin/env python3.4
 '''Tests rendering using shader objects from core GL or extensions
 
 Uses the:
