@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3.4
 # -*- coding: utf8 -*-
 # Conversion contributed by: Ivan Izuver <izuver@users.sourceforge.net>
 from OpenGL.GL import *
@@ -11,7 +11,7 @@ import sys
 import numpy # or Numeric
 
 
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 w_count=0
 hold = 0.0
@@ -38,9 +38,9 @@ def InitGL(Width, Height):                 # We call this right after our OpenGL
 	glPolygonMode(GL_FRONT,GL_LINE)
 	
 	# walk on plane X
-	for x in xrange(45):
+	for x in iter(range(45)):
 		# walk on plane Y
-		for y in xrange(45):
+		for y in iter(range(45)):
 			# apply wave to grid
 			points[x][y][0]=float((x/5.0)-4.5)
 			points[x][y][1]=float((y/5.0)-4.5)
@@ -83,8 +83,8 @@ def DrawGLScene():
 	
 	# build the wave
 	glBegin(GL_QUADS)
-	for x in xrange(45):
-		for y in xrange(45):
+	for x in iter(range(45)):
+		for y in iter(range(45)):
 			float_x = float(x)/44.0
 			float_y = float(y)/44.0
 			float_xb = float(x+1)/44.0
@@ -111,9 +111,9 @@ def DrawGLScene():
 	glEnd()
 	
 	if w_count==2: # for slowing the wave
-		for y in xrange(45): # walk on plane Y
+		for y in iter(range(45)): # walk on plane Y
 			hold=points[0][y][2] # save the current value of left side one point 
-			for x in xrange(45): # walk on plane Y
+			for x in iter(range(45)): # walk on plane Y
 				points[x][y][2] = points[x+1][y][2]  
 			points[44][y][2]=hold 
 		w_count = 1
@@ -181,5 +181,5 @@ def main():
 
 # Print message to console, and kick off the main to get it rolling.
 if __name__ == "__main__":
-	print "Hit ESC key to quit."
+	print("Hit ESC key to quit.")
 	main()
