@@ -1,15 +1,15 @@
-#! /usr/bin/env python
-# -*- coding: utf8 -*-
+#!/usr/bin/env python3.4
+
 """Port of NeHe Lesson 16 by Ivan Izuver <izuver@users.sourceforge.net>"""
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 import sys
-from Image import *
+from PIL import Image
 
 # Some api in the chain is translating the keystrokes to this octal string
 # so instead of saying: ESCAPE = 27, we use the following.
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0
@@ -23,11 +23,11 @@ texture = 0
 
 def LoadTextures():
     #global texture
-    image = open("NeHe.bmp")
+    image = Image.open("NeHe.bmp")
     
     ix = image.size[0]
     iy = image.size[1]
-    image = image.tostring("raw", "RGBX", 0, -1)
+    image = image.tobytes("raw", "RGBX", 0, -1)
     
     # Create Texture    
     glBindTexture(GL_TEXTURE_2D, glGenTextures(1))   # 2d texture (x and y size)
@@ -203,6 +203,6 @@ def main():
 
 # Print message to console, and kick off the main to get it rolling.
 if __name__ == "__main__":
-    print "Hit ESC key to quit."
+    print("Hit ESC key to quit.")
     main()
         
