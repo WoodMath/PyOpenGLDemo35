@@ -1,12 +1,12 @@
-#!
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
 	raise Exception
 
 import string
-__version__ = string.split('$Revision: 1.1.1.1 $')[1]
-__date__ = string.join(string.split('$Date: 2007/02/15 19:25:20 $')[1:3], ' ')
+__version__ = '$Revision: 1.1.1.1 $'.split()[1]
+__date__ = '$Date: 2007/02/15 19:25:20 $'.split()[1:3]
 __author__ = 'Tarn Weisner Burton <twburton@users.sourceforge.net>'
 
 #
@@ -47,11 +47,11 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 import sys
-from Image import *
+from PIL import Image
 
 # Some api in the chain is translating the keystrokes to this octal string
 # so instead of saying: ESCAPE = 27, we use the following.
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0
@@ -65,11 +65,11 @@ light = 0
 
 def LoadTextures():
 	global texture_num, textures
-	image = open("Wall.bmp")
+	image = Image.open("Wall.bmp")
 	
 	ix = image.size[0]
 	iy = image.size[1]
-	image = image.tostring("raw", "RGBX", 0, -1)
+	image = image.tobytes("raw", "RGBX", 0, -1)
 	
 	# Create Texture
 	textures = glGenTextures(3)
@@ -236,7 +236,7 @@ def DrawGLScene():
 def keyPressed(key, x, y):
 	global object, texture_num, light
 	# If escape is pressed, kill everything.
-	key = string.upper(key)
+	key = key.upper()
 	if key == ESCAPE:
 		sys.exit()
 	elif key == 'L':
@@ -251,7 +251,7 @@ def main():
 	usage = """Press L to toggle Lighting
 Press T to change textures
 Press O to change objects"""
-	print usage
+	print(usage)
 	global window
 	glutInit(sys.argv)
 
@@ -298,6 +298,6 @@ Press O to change objects"""
 
 
 # Print message to console, and kick off the main to get it rolling.
-print "Hit ESC key to quit."
+print("Hit ESC key to quit.")
 main()
 		
