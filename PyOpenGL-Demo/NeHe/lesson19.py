@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3.4
 # -*- coding: utf8 -*-
 """Port of NeHe Lesson 19 by Ivan Izuver <izuver@users.sourceforge.net>
 
@@ -7,10 +7,10 @@ port NeHe tutorials from C\C++ to Python
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
-from Image import *
+from PIL import Image
 import sys,random
 
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # global particles settings
 MAX_PARTICLES=1000 # Number of particles create.
@@ -49,7 +49,7 @@ class particle:
         
 prts=[]
 
-for i in xrange(MAX_PARTICLES):
+for i in iter(range(MAX_PARTICLES)):
     particl=particle() 
     prts.append(particl)
     
@@ -61,11 +61,11 @@ window = 0 # Number of the glut window.
 
 def LoadTextures():
     #global texture
-    image = open("myfire.jpg")
+    image = Image.open("myfire.jpg")
     
     ix = image.size[0]
     iy = image.size[1]
-    image = image.tostring("raw", "RGBX", 0, -1)
+    image = image.tobytes("raw", "RGBX", 0, -1)
     
     # Create Texture    
     glBindTexture(GL_TEXTURE_2D, glGenTextures(1))   # 2d texture (x and y size)
@@ -96,15 +96,15 @@ def InitGL(Width, Height):                # We call this right after our OpenGL 
     glHint(GL_POINT_SMOOTH_HINT,GL_NICEST);   
     glEnable(GL_TEXTURE_2D);                  
     
-    for i in xrange(MAX_PARTICLES):
+    for i in iter(range(MAX_PARTICLES)):
         prts[i]
         
         prts[i].LIFE=1.0
         prts[i].FADE=float(random.randrange(0,100))/1000.0+0.003
         
-        prts[i].R=colors[i*(12/1000)][0]
-        prts[i].G=colors[i*(12/1000)][1]
-        prts[i].B=colors[i*(12/1000)][2]
+        prts[i].R=colors[i*int(12/1000)][0]
+        prts[i].G=colors[i*int(12/1000)][1]
+        prts[i].B=colors[i*int(12/1000)][2]
         
         prts[i].Xi=(float(random.randrange(0,100)%50)-26.0)*10.0
         prts[i].Yi=(float(random.randrange(0,100)%50)-25.0)*10.0
@@ -139,7 +139,7 @@ def DrawGLScene():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()                         # Reset The View
     
-    for i in xrange(MAX_PARTICLES):
+    for i in iter(range(MAX_PARTICLES)):
         if prts[i].ACTIVE==1:
             x=float(prts[i].X)
             y=float(prts[i].Y)
@@ -190,29 +190,29 @@ def DrawGLScene():
 def keyPressed(key, x, y):
     global window,ZOOM
     # If escape is pressed, kill everything.
-    key = string.upper(key)
+    key = key.upper()
     prt=particle()
     
     if key == ESCAPE:
         sys.exit()
     elif key == 'W':
-        for i in xrange(MAX_PARTICLES):
+        for i in iter(range(MAX_PARTICLES)):
             if prts[i].Yj<1.5:
                 prts[i].Yj+=0.1
     elif key == 'S':
-        for i in xrange(MAX_PARTICLES):
+        for i in iter(range(MAX_PARTICLES)):
             if prts[i].Yj>-1.5:
                 prts[i].Yj-=0.1
     elif key == 'A':
-        for i in xrange(MAX_PARTICLES):
+        for i in iter(range(MAX_PARTICLES)):
             if prts[i].Xj>-1.5:
                 prts[i].Xj-=0.1
     elif key == 'D':
-        for i in xrange(MAX_PARTICLES):
+        for i in iter(range(MAX_PARTICLES)):
             if prts[i].Xj<1.5:
                 prts[i].Xj+=0.1
     elif key == 'F':
-        for i in xrange(MAX_PARTICLES):    
+        for i in iter(range(MAX_PARTICLES)):    
             prts[i].X=0.0
             prts[i].Y=0.0
             prts[i].Z=0.0
@@ -273,6 +273,6 @@ def main():
 
 # Print message to console, and kick off the main to get it rolling.
 if __name__ == "__main__":
-    print "Hit ESC key to quit."
-    print 'other commands: WASD (direction) ZX (zoom)'
+    print("Hit ESC key to quit.")
+    print('other commands: WASD (direction) ZX (zoom)')
     main()
