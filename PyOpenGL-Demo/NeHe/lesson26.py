@@ -1,14 +1,14 @@
-#! /usr/bin/env python
+#!/usr/bin/env python3.4
 # -*- coding: utf8 -*-
 """Port of NeHe Lesson 26 by Ivan Izuver <izuver@users.sourceforge.net>"""
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
-from Image import *
+from PIL import Image
 import sys,gc
 
 
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0
@@ -28,11 +28,11 @@ def LoadTextures(fname):
 	if textures.get( fname ) is not None:
 		return textures.get( fname )
 	texture = textures[fname] = glGenTextures(1)
-	image = open(fname)
+	image = Image.open(fname)
 	
 	ix = image.size[0]
 	iy = image.size[1]
-	image = image.tostring("raw", "RGBX", 0, -1)
+	image = image.tobytes("raw", "RGBX", 0, -1)
 	
 	# Create Texture    
 	glBindTexture(GL_TEXTURE_2D, texture)   # 2d texture (x and y size)
@@ -249,6 +249,6 @@ def main():
 
 # Print message to console, and kick off the main to get it rolling.
 if __name__ == "__main__":
-	print "Hit ESC key to quit."
+	print("Hit ESC key to quit.")
 	main()
 		
