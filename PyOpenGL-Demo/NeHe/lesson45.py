@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.4
 # /*******************************************
 # *                                          *
 # *   Paul Frazee's Vertex Array Example     *
@@ -58,16 +59,16 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 try:
 	import numpy as Numeric
-except ImportError, err:
+except ImportError:
 	try: 
 		import Numeric
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import traceback 
 
-import Image 				# PIL
+from PIL import Image 				# PIL
 import sys
 # import win32api				# GetTickCount
 import time				
@@ -79,18 +80,10 @@ from OpenGL.GL.ARB.vertex_buffer_object import *
 
 
 
-# *********************** Globals *********************** 
-# Python 2.2 defines these directly
-try:
-	True
-except NameError:
-	True = 1==1
-	False = 1==0
-
 
 # Some api in the chain is translating the keystrokes to this octal string
 # so instead of saying: ESCAPE = 27, we use the following.
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0
@@ -177,7 +170,7 @@ class CMesh:
 		while (nZ < sizeY):
 			nX = 0
 			while (nX < sizeY):
-				for nTri in xrange (6):
+				for nTri in iter(range (6)):
 					# // Using This Quick Hack, Figure The X,Z Position Of The Point
 					flX = float (nX)
 					if (nTri == 1) or (nTri == 2) or (nTri == 5):
@@ -199,14 +192,14 @@ class CMesh:
 				nX += flResolution_int
 			nZ += flResolution_int
 
-		self.m_pVertices_as_string = self.m_pVertices.tostring () 
-		self.m_pTexCoords_as_string = self.m_pTexCoords.tostring () 
+		self.m_pVertices_as_string = self.m_pVertices.tobytes () 
+		self.m_pTexCoords_as_string = self.m_pTexCoords.tobytes () 
 
 		# // Load The Texture Into OpenGL
 		self.m_nTextureID = glGenTextures (1)						# // Get An Open ID
 		glBindTexture( GL_TEXTURE_2D, self.m_nTextureID );			# // Bind The Texture
 		glTexImage2D( GL_TEXTURE_2D, 0, 3, sizeX, sizeY, 0, GL_RGB, GL_UNSIGNED_BYTE, 
-			self.m_pTextureImage.tostring ("raw", "RGB", 0, -1))
+			self.m_pTextureImage.tobytes ("raw", "RGB", 0, -1))
 		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
 
@@ -276,7 +269,7 @@ def IsExtensionSupported (TargetExtension):
 			break;
 	if (found_extension == False):
 		gl_supports_extension = False
-		print "OpenGL rendering context does not support '%s'" % (TargetExtension)
+		print("OpenGL rendering context does not support '%s'", (TargetExtension))
 		return False
 
 	gl_supports_extension = True
@@ -308,11 +301,11 @@ def IsExtensionSupported (TargetExtension):
 	import traceback
 	try:
 		__import__ (extension_module_name)
-		print "PyOpenGL supports '%s'" % (TargetExtension)
+		print("PyOpenGL supports '%s'", (TargetExtension))
 	except:
 		traceback.print_exc()
-		print 'Failed to import', extension_module_name
-		print "OpenGL rendering context supports '%s'" % (TargetExtension),
+		print('Failed to import', extension_module_name)
+		print("OpenGL rendering context supports '%s'", (TargetExtension))
 		return False
 
 	return True
@@ -330,7 +323,7 @@ def InitGL(Width, Height):				# We call this right after our OpenGL window is cr
 	g_pMesh = CMesh ()
 	if (not g_pMesh.LoadHeightmap ("Terrain.bmp",
 		CMesh.MESH_HEIGHTSCALE, CMesh.MESH_RESOLUTION)):
-		print "Error Loading Heightmap"
+		print("Error Loading Heightmap")
 		sys.exit(1)
 		return False
 
@@ -341,7 +334,7 @@ def InitGL(Width, Height):				# We call this right after our OpenGL window is cr
 		# so that we call the Extension.
 
 		if (not glInitVertexBufferObjectARB()):
-			print "Help!  No GL_ARB_vertex_buffer_object"
+			print("Help!  No GL_ARB_vertex_buffer_object")
 			sys.exit(1)
 			return False
 		# Now we can call to gl*Buffer* ()
@@ -529,7 +522,7 @@ def main():
 
 # Print message to console, and kick off the main to get it rolling.
 if __name__ == "__main__":
-	print "Hit ESC key to quit."
+	print("Hit ESC key to quit.")
 	main()
 
 
