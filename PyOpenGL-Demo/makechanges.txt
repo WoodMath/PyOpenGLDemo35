@@ -1,30 +1,43 @@
-1. Replace occurances of
+1. Add
+	#!/usr/bin/env python3.4
+   to top of file.
+
+2. Replace occurances of
+	String.split('string to split')
+   with
+	'string to split'.split()
+
+3. Replace occurances of
 	print 'String to print'
    with
 	print('String to print')
 
-2. Replace occurances of 
+4. Replace occurances of 
 	print 'String to print with formatting %' % (var)
    with
 	print('String to pring with formatting %', (var))
 
-3. Replace occurances of
+5. Replace occurances of
 	except ImportError, err:
    with
 	except ImportError:
 
-4. Replace occurances of
+6. Replace occurances of
 	xrange(var)
    with
 	iter(range(var))
 
-5. Replace occurances of
+7. Replace occurances of
 	import Image
    with
 	from PIL import Image
 
-6. Replace occurances of
+8. Replace occurances of
 	image.tostring()
    with
 	image.tobytes()
 
+9. Replace occurances of
+	ESCAPE = '\033'
+   with
+	ESCAPE = b'\x1b'
