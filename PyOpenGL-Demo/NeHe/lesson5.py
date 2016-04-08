@@ -1,12 +1,12 @@
-#!
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
 	raise Exception
 
 import string
-__version__ = string.split('$Revision: 1.1.1.1 $')[1]
-__date__ = string.join(string.split('$Date: 2007/02/15 19:25:21 $')[1:3], ' ')
+__version__ = '$Revision: 1.1.1.1 $'.split()[1]
+__date__ = '$Date: 2007/02/15 19:25:21 $'.split()[1:3]
 __author__ = 'Tarn Weisner Burton <twburton@users.sourceforge.net>'
 
 #
@@ -51,7 +51,7 @@ import sys
 
 # Some api in the chain is translating the keystrokes to this octal string
 # so instead of saying: ESCAPE = 27, we use the following.
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0
@@ -236,6 +236,6 @@ def main():
 	glutMainLoop()
 
 # Print message to console, and kick off the main to get it rolling.
-print "Hit ESC key to quit."
+print("Hit ESC key to quit.")
 main()
     	
