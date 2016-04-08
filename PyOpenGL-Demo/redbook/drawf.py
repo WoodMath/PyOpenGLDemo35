@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.4
 '''
 drawf.c from the Redbook examples.  
 Converted to Python by Jason L. Petrone 7/00
@@ -55,9 +55,9 @@ try:
 	from OpenGL.GLUT import *
 	from OpenGL.GL import *
 except:
-	print '''
+	print('''
 ERROR: PyOpenGL not installed properly.  
-'''
+''')
 	sys.exit()
 
 
@@ -75,19 +75,19 @@ def init():
 	glClearColor(0.0, 0.0, 0.0, 0.0)
 
 def display():
-	print 'display'
+	print('display')
 	glClear(GL_COLOR_BUFFER_BIT)
 	glColor3f(1.0, 1.0, 1.0)
 	glRasterPos2i(20, 20)
-	print 'beginning bitmaps'
+	print('beginning bitmaps')
 	glBitmap(10, 12, 0.0, 0.0, 11.0, 0.0, rasters)
 	glBitmap(10, 12, 0.0, 0.0, 11.0, 0.0, rasters)
 	glBitmap(10, 12, 0.0, 0.0, 11.0, 0.0, rasters)
-	print 'flushing'
+	print('flushing')
 	glFlush()
 	
 def reshape(w, h):
-	print 'reshape'
+	print('reshape')
 	glViewport(0, 0, w, h)
 	glMatrixMode(GL_PROJECTION)
 	glLoadIdentity()
@@ -95,7 +95,7 @@ def reshape(w, h):
 	glMatrixMode(GL_MODELVIEW)
 
 def keyboard(key, x, y):
-	print 'keyboard', key, x,y
+	print('keyboard', key, x,y)
 	if key == chr(27):
 		sys.exit()
 

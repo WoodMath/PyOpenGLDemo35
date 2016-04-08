@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
@@ -64,9 +64,9 @@ try:
   from OpenGL.GLUT import *
   from OpenGL.GL import *
 except:
-  print '''
+  print('''
 ERROR: PyOpenGL not installed properly.  
-        '''
+        ''')
   sys.exit()
 
 
@@ -108,7 +108,7 @@ def renderSphere(x, y, z):
 
 # display() draws 5 spheres at different z positions.
 def display():
-   print 'redisplay'
+   print('redisplay')
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
    renderSphere (-2., -0.5, -1.0)
    renderSphere (-1., -0.5, -2.0)
@@ -133,13 +133,13 @@ def keyboard(key, x, y):
   if key in ['f','F']:
     if (fogMode == GL_EXP):
       fogMode = GL_EXP2;
-      print "Fog mode is GL_EXP2"
+      print("Fog mode is GL_EXP2")
     elif (fogMode == GL_EXP2):
       fogMode = GL_LINEAR
-      print "Fog mode is GL_LINEAR"
+      print("Fog mode is GL_LINEAR")
     elif (fogMode == GL_LINEAR):
       fogMode = GL_EXP
-      print "Fog mode is GL_EXP"
+      print("Fog mode is GL_EXP")
     glFogi(GL_FOG_MODE, fogMode)
     glutPostRedisplay()
   

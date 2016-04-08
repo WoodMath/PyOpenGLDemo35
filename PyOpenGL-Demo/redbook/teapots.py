@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.4
 '''
 teapots.py
 Converted to Python by Jason Petrone 6/00
@@ -52,9 +52,9 @@ try:
   from OpenGL.GL import *
   from OpenGL.GLU import *
 except:
-  print '''
+  print('''
 ERROR: PyOpenGL not installed properly.  
-        '''
+        ''')
   sys.exit()
 
 teapotList = None

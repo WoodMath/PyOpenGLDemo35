@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
@@ -11,11 +11,11 @@ from OpenGL.GL import *
 from OpenGL.Tk import *
 try:
 	from numpy import *
-except ImportError, err:
+except ImportError:
 	try: 
 		from Numeric import *
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import Image

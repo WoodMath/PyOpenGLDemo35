@@ -24,7 +24,7 @@ if __name__ == '__build__':
 
 
 import sys
-from Image import *
+from PIL import Image
 from OpenGL.GL import *
 from OpenGL.Tk import *
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
@@ -9,11 +9,11 @@ import sys
 import string
 try:
 	import numpy as Numeric
-except ImportError, err:
+except ImportError:
 	try: 
 		import Numeric
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import NumericPDB
@@ -118,8 +118,8 @@ class Surface:
 		spheres = string.atoi(data[1])
 		probe_r = string.atof(data[2])
 		density = string.atof(data[3])
-		print "Numfaces, spheres, probe_r, density"
-		print numfaces, spheres, probe_r, density
+		print("Numfaces, spheres, probe_r, density")
+		print(numfaces, spheres, probe_r, density)
 
 		self.faces = Numeric.zeros((numfaces, 3))
 		for i in range(numfaces):
@@ -134,8 +134,8 @@ class Surface:
 		spheres = string.atoi(data[1])
 		probe_r = string.atof(data[2])
 		density = string.atof(data[3])
-		print "Vertices, spheres, probe_r, density"
-		print vertices, spheres, probe_r, density
+		print("Vertices, spheres, probe_r, density")
+		print(vertices, spheres, probe_r, density)
 		f.close()
 
 		self.vert = Numeric.zeros((vertices, 3), 'f')
@@ -162,7 +162,7 @@ class Surface:
 				self.colorlist.append(self.colordict[i[0]])
 				self.maplist.append(self.mapdict[i[0]])
 			else:
-				print "unfound atom type:", i
+				print("unfound atom type:", i)
 				self.colorlist.append(self.colordict['U'])
 				self.maplist.append(self.mapdict['U'])
 

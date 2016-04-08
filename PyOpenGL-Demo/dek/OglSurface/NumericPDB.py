@@ -7,11 +7,11 @@ import os
 import string
 try:
 	import numpy as Numeric
-except ImportError, err:
+except ImportError:
 	try: 
 		import Numeric
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import Geometry
@@ -143,7 +143,7 @@ class PDB:
 
 	def Print(self):
 		for i in self.records:
-			print i.type, i.anum, i.atom, i.residue, i.chain, i.rnum
+			print(i.type, i.anum, i.atom, i.residue, i.chain, i.rnum)
 
 	def ReturnAnum(self, atom, rnum):
 		for i in range(len(self.records)):

@@ -31,7 +31,7 @@ try:
 except:
 	print("This demo requires the Numeric extension, sorry")
 	sys.exit()
-from Image import *
+from PIL import Image
 from OpenGL.GL import *
 from OpenGL.Tk import *
 

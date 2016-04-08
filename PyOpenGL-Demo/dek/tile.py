@@ -9,7 +9,7 @@ if __name__ == '__build__':
 ## By david konerding (dek@cgl.ucsf.edu)
 
 import sys
-from Image import *
+from PIL import Image
 from OpenGL.GL import *
 from OpenGL.Tk import *
 ##try:
