@@ -65,11 +65,11 @@ from OpenGL.GLUT import *
 from OpenGL.GLU import *
 try:
 	import numpy as Numeric
-except ImportError, err:
+except ImportError:
 	try: 
 		import Numeric
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import random
@@ -89,7 +89,7 @@ except NameError:
 
 # Some api in the chain is translating the keystrokes to this octal string
 # so instead of saying: ESCAPE = 27, we use the following.
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0

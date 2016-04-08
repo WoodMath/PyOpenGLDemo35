@@ -42,7 +42,7 @@
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
-import Image 				# PIL
+import PIL import Image 				# PIL
 import sys
 from OpenGL.GL.EXT.fog_coord import *
 
