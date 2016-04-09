@@ -1,43 +1,48 @@
-1. Add
-	#!/usr/bin/env python3.4
-   to top of file.
+1. 	Add
+		#!/usr/bin/env python3.4
+	to top of file.
 
-2. Replace occurances of
-	String.split('string to split')
-   with
-	'string to split'.split()
+2.	Replace occurances of
+		String.split('string to split')
+	with
+		'string to split'.split()
 
-3. Replace occurances of
-	print 'String to print'
-   with
-	print('String to print')
+3.	Replace occurances of
+		print 'String to print'
+	with
+		print('String to print')
 
-4. Replace occurances of 
-	print 'String to print with formatting %' % (var)
-   with
-	print('String to pring with formatting %', (var))
+4.	Replace occurances of 
+		print 'String to print with formatting %' % (var)
+	with
+		print('String to pring with formatting %', (var))
 
-5. Replace occurances of
-	except ImportError, err:
-   with
-	except ImportError:
+5.	Replace occurances of
+		except ImportError, err:
+	with
+		except ImportError:
 
-6. Replace occurances of
-	xrange(var)
-   with
-	iter(range(var))
+6.	Replace occurances of
+		xrange(var)
+	with
+		iter(range(var))
 
-7. Replace occurances of
-	import Image
-   with
-	from PIL import Image
+7.	Replace occurances of
+		import Image
+	with
+		from PIL import Image
 
-8. Replace occurances of
-	image.tostring()
-   with
-	image.tobytes()
+8.	Replace occurances of
+		image = open('image.bmp')
+	with
+		image = Image.open('image.bmp')
 
-9. Replace occurances of
-	ESCAPE = '\033'
-   with
-	ESCAPE = b'\x1b'
+9.	Replace occurances of
+		image.tostring()
+	with
+		image.tobytes()
+
+10.	Replace occurances of
+		ESCAPE = '\033'
+	with
+		ESCAPE = b'\x1b'
