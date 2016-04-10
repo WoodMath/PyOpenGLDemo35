@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.4
 # NeHe Tutorial Lesson: 43 - FreeType fonts in OpenGL
 #
 # Ported to PyOpenGL 2.0 by Brian Leair 18 Jan 2004
@@ -41,17 +42,9 @@ from math import cos
 
 import sys
 
-# Python 2.2 defines these directly
-try:
-	True
-except NameError:
-	True = 1==1
-	False = 1==0
-
-
 # Some api in the chain is translating the keystrokes to this octal string
 # so instead of saying: ESCAPE = 27, we use the following.
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0
@@ -192,5 +185,5 @@ def main():
 
 # Print message to console, and kick off the main to get it rolling.
 if __name__ == "__main__":
-	print "Hit ESC key to quit."
+	print("Hit ESC key to quit.")
 	main()

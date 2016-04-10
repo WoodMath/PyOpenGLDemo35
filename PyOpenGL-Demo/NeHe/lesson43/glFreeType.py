@@ -10,17 +10,9 @@
 # import freetype
 # We are going to use Python Image Library's font handling
 # From PIL 1.1.4:
-import ImageFont
+from PIL import ImageFont
 from OpenGL.GL import *
 from OpenGL.GLU import *
-
-
-# Python 2.2 defines these directly
-try:
-	True
-except NameError:
-	True = 1==1
-	False = 1==0
 
 
 def is_font_available (ft, facename):
@@ -82,8 +74,8 @@ def make_dlist (ft, ch, list_base, tex_base_list):
 	# will be 0 if we are in the padding zone, and whatever
 	# is the the Freetype bitmap otherwise.
 	expanded_data = ""
-	for j in xrange (height):
-		for i in xrange (width):
+	for j in iter(range (height)):
+		for i in iter(range (width)):
 			if (i >= glyph_width) or (j >= glyph_height):
 				value = chr (0)
 				expanded_data += value
@@ -215,7 +207,7 @@ class font_data:
 		try:
 			ft = ImageFont.truetype (facename, pixel_height)
 		except:
-			raise ValueError, "Unable to locate true type font '%s'" % (facename)
+			raise ValueError("Unable to locate true type font '%s'" % (facename))
 
 		# Here we ask opengl to allocate resources for
 		# all the textures and displays lists which we
@@ -227,7 +219,7 @@ class font_data:
 		self.textures = [None] * 128
 
 		# This is where we actually create each of the fonts display lists.
-		for i in xrange (128):
+		for i in iter(range (128)):
 			make_dlist (ft, i, self.m_list_base, self.textures);
 
 		self.m_allocated = True
@@ -331,9 +323,9 @@ class font_data:
 
 # Unit Test harness if this python module is run directly.
 if __name__ == "__main__":
-	print "testing availability of freetype font arial\n"
+	print("testing availability of freetype font arial\n")
 	ft = ImageFont.truetype ("arial.ttf", 15)
 	if ft:
-		print "Found the TrueType font 'arial.ttf'"
+		print("Found the TrueType font 'arial.ttf'")
 	else:
-		print "faild to find the TrueTYpe font 'arial'\n"
+		print("faild to find the TrueTYpe font 'arial'\n")
