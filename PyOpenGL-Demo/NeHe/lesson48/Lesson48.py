@@ -1,4 +1,4 @@
-
+#!/usr/bin/env python3.4
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
@@ -11,12 +11,6 @@ from ArcBall import * 				# ArcBallT and this tutorials set of points/vectors/ma
 PI2 = 2.0*3.1415926535			# 2 * PI (not squared!) 		// PI Squared
 
 # *********************** Globals *********************** 
-# Python 2.2 defines these directly
-try:
-	True
-except NameError:
-	True = 1==1
-	False = 1==0
 
 g_Transform = Matrix4fT ()
 g_LastRot = Matrix3fT ()
@@ -100,8 +94,8 @@ def Upon_Click (button, button_state, cursor_x, cursor_y):
 def Torus(MinorRadius, MajorRadius):		
 	# // Draw A Torus With Normals
 	glBegin( GL_TRIANGLE_STRIP );									# // Start A Triangle Strip
-	for i in xrange (20): 											# // Stacks
-		for j in xrange (-1, 20): 										# // Slices
+	for i in iter(range (20)): 											# // Stacks
+		for j in iter(range (-1, 20)): 										# // Slices
 			# NOTE, python's definition of modulus for negative numbers returns
 			# results different than C's
 			#       (a / d)*d  +  a % d = a
