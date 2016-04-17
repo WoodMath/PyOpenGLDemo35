@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.4
 # NeHe Tutorial Lesson: 44 - Lense Flare
 #
 # Ported to PyOpenGL 2.0 by Brian Leair 2004
@@ -37,7 +38,7 @@
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
-import Image					# PIL
+from PIL import Image					# PIL
 try:
 	import win32api				# GetTickCount ()
 	gHaveWin32 = 1
@@ -52,17 +53,10 @@ from glFont import *
 
 
 # *********************** Globals *********************** 
-# Python 2.2 defines these directly
-try:
-	True
-except NameError:
-	True = 1==1
-	False = 1==0
-
 
 # Some api in the chain is translating the keystrokes to this octal string
 # so instead of saying: ESCAPE = 27, we use the following.
-ESCAPE = '\033'
+ESCAPE = b'\x1b'
 
 # Number of the glut window.
 window = 0
@@ -106,11 +100,11 @@ def LoadTexture (path):
 		# support by our rendering context for a GL texture.
 		# Note, Feel free to experiemnt and force a resize by placing a small val into
 		# glMaxTexDim (e.g. 32,64,128).
-		raise RuntimeError, "Texture image (%d by %d) is larger than supported by GL %d." % (WidthPixels, HeightPixels, glMaxTexDim)
+		raise RuntimeError("Texture image (%d by %d) is larger than supported by GL %d." % (WidthPixels, HeightPixels, glMaxTexDim))
 
 	# Create a raw string from the image data - data will be unsigned bytes
 	# RGBpad, no stride (0), and first line is top of image (-1)
-	pBits = Picture.tostring("raw", "RGBX", 0, -1)
+	pBits = Picture.tobytes("raw", "RGBX", 0, -1)
 
 	# // Typical Texture Generation Using Data From The Bitmap
 	texid = glGenTextures(1);											# // Create The Texture
@@ -150,7 +144,7 @@ def InitGL(Width, Height):				# We call this right after our OpenGL window is cr
 		gFont.SetWindowSize (1024, 768)
 		gFont.BuildFont (1.0)
 	else:
-		raise RuntimeError, "Failed to build font 'Art\\Font.bmp'"
+		raise(RuntimeError, "Failed to build font 'Art\\Font.bmp'")
 
 
 	gCamera = glCamera ()
@@ -161,22 +155,22 @@ def InitGL(Width, Height):				# We call this right after our OpenGL window is cr
 	# // Try and load the HardGlow texture tell the user if we can't find it then quit
 	status, gCamera.m_GlowTexture = LoadTexture(os.path.join("Art","HardGlow2.bmp"));
 	if (not status):
-		raise RuntimeError, "Failed to load Hard Glow texture."
+		raise(RuntimeError, "Failed to load Hard Glow texture.")
 
 	# // Try and load the BigGlow texture tell the user if we can't find it then quit
 	status, gCamera.m_BigGlowTexture = LoadTexture(os.path.join("Art","BigGlow3.bmp"))
 	if (not status):
-		raise RuntimeError, "Failed to load Big Glow texture."
+		raise(RuntimeError, "Failed to load Big Glow texture.")
 
 	# // Try and load the Halo texture tell the user if we can't find it then quit
 	status, gCamera.m_HaloTexture = LoadTexture(os.path.join("Art","Halo3.bmp"))
 	if (not status):
-		raise RuntimeError, "Failed to load Halo texture."
+		raise(RuntimeError, "Failed to load Halo texture.")
 	
 	# // Try and load the Streaks texture tell the user if we can't find it then quit
 	status, gCamera.m_StreakTexture = LoadTexture(os.path.join("Art","Streaks4.bmp"))
 	if (not status):
-		raise RuntimeError, "Failed to load Streaks texture."
+		raise(RuntimeError, "Failed to load Streaks texture.")
 
 	# //##################  NEW STUFF  ##################################
 
@@ -472,6 +466,6 @@ def main():
 
 # Print message to console, and kick off the main to get it rolling.
 if __name__ == "__main__":
-	print "Hit ESC key to quit."
+	print("Hit ESC key to quit.")
 	main()
 

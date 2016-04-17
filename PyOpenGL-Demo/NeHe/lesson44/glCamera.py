@@ -31,11 +31,11 @@ from math import sqrt, fabs
 
 try:
 	import numpy as Numeric
-except ImportError, err:
+except ImportError:
 	try: 
 		import Numeric
-	except ImportError, err:
-		print "This demo requires the numpy or Numeric extension, sorry"
+	except ImportError:
+		print("This demo requires the numpy or Numeric extension, sorry")
 		import sys
 		sys.exit()
 import copy
@@ -274,30 +274,30 @@ class glCamera:
 		Frustum[3][3] /= t;
 
  		# /* Extract the FAR plane */
- 		Frustum[4][0] = clip[ 3] - clip[ 2];
- 		Frustum[4][1] = clip[ 7] - clip[ 6];
- 		Frustum[4][2] = clip[11] - clip[10];
+		Frustum[4][0] = clip[ 3] - clip[ 2];
+		Frustum[4][1] = clip[ 7] - clip[ 6];
+		Frustum[4][2] = clip[11] - clip[10];
 		Frustum[4][3] = clip[15] - clip[14];
 
 		# /* Normalize the result */
- 		t = sqrt( Frustum[4][0] * Frustum[4][0] + Frustum[4][1] * Frustum[4][1] + Frustum[4][2] * Frustum[4][2] )
- 		Frustum[4][0] /= t;
- 		Frustum[4][1] /= t;
- 		Frustum[4][2] /= t;
- 		Frustum[4][3] /= t;
+		t = sqrt( Frustum[4][0] * Frustum[4][0] + Frustum[4][1] * Frustum[4][1] + Frustum[4][2] * Frustum[4][2] )
+		Frustum[4][0] /= t;
+		Frustum[4][1] /= t;
+		Frustum[4][2] /= t;
+		Frustum[4][3] /= t;
 
- 		# /* Extract the NEAR plane */
- 		Frustum[5][0] = clip[ 3] + clip[ 2];
- 		Frustum[5][1] = clip[ 7] + clip[ 6];
- 		Frustum[5][2] = clip[11] + clip[10];
- 		Frustum[5][3] = clip[15] + clip[14];
+		# /* Extract the NEAR plane */
+		Frustum[5][0] = clip[ 3] + clip[ 2];
+		Frustum[5][1] = clip[ 7] + clip[ 6];
+		Frustum[5][2] = clip[11] + clip[10];
+		Frustum[5][3] = clip[15] + clip[14];
 
- 		# /* Normalize the result */
- 		t = sqrt( Frustum[5][0] * Frustum[5][0] + Frustum[5][1] * Frustum[5][1] + Frustum[5][2] * Frustum[5][2] );
- 		Frustum[5][0] /= t;
- 		Frustum[5][1] /= t;
- 		Frustum[5][2] /= t;
- 		Frustum[5][3] /= t;
+		# /* Normalize the result */
+		t = sqrt( Frustum[5][0] * Frustum[5][0] + Frustum[5][1] * Frustum[5][1] + Frustum[5][2] * Frustum[5][2] );
+		Frustum[5][0] /= t;
+		Frustum[5][1] /= t;
+		Frustum[5][2] /= t;
+		Frustum[5][3] /= t;
 
 		return
 
@@ -368,17 +368,17 @@ class glCamera:
 		Frustum[0][3] /= t;
 	
  		# /* Extract the numbers for the LEFT plane */
- 		Frustum[1][0] = clip[ 3] + clip[ 0];
- 		Frustum[1][1] = clip[ 7] + clip[ 4];
- 		Frustum[1][2] = clip[11] + clip[ 8];
- 		Frustum[1][3] = clip[15] + clip[12];
+		Frustum[1][0] = clip[ 3] + clip[ 0];
+		Frustum[1][1] = clip[ 7] + clip[ 4];
+		Frustum[1][2] = clip[11] + clip[ 8];
+		Frustum[1][3] = clip[15] + clip[12];
 	
     	# /* Normalize the result */
- 		t = sqrt( Frustum[1][0] * Frustum[1][0] + Frustum[1][1] * Frustum[1][1] + Frustum[1][2] * Frustum[1][2] );
- 		Frustum[1][0] /= t;
- 		Frustum[1][1] /= t;
- 		Frustum[1][2] /= t;
- 		Frustum[1][3] /= t;
+		t = sqrt( Frustum[1][0] * Frustum[1][0] + Frustum[1][1] * Frustum[1][1] + Frustum[1][2] * Frustum[1][2] );
+		Frustum[1][0] /= t;
+		Frustum[1][1] /= t;
+		Frustum[1][2] /= t;
+		Frustum[1][3] /= t;
 	
 		# /* Extract the BOTTOM plane */
 		Frustum[2][0] = clip[ 3] + clip[ 1];
@@ -394,43 +394,43 @@ class glCamera:
 		Frustum[2][3] /= t;
 	
     	# /* Extract the TOP plane */
- 		Frustum[3][0] = clip[ 3] - clip[ 1];
- 		Frustum[3][1] = clip[ 7] - clip[ 5];
- 		Frustum[3][2] = clip[11] - clip[ 9];
- 		Frustum[3][3] = clip[15] - clip[13];
+		Frustum[3][0] = clip[ 3] - clip[ 1];
+		Frustum[3][1] = clip[ 7] - clip[ 5];
+		Frustum[3][2] = clip[11] - clip[ 9];
+		Frustum[3][3] = clip[15] - clip[13];
 	
     	# /* Normalize the result */
- 		t = sqrt( Frustum[3][0] * Frustum[3][0] + Frustum[3][1] * Frustum[3][1] + Frustum[3][2] * Frustum[3][2] );
- 		Frustum[3][0] /= t;
- 		Frustum[3][1] /= t;
- 		Frustum[3][2] /= t;
- 		Frustum[3][3] /= t;
+		t = sqrt( Frustum[3][0] * Frustum[3][0] + Frustum[3][1] * Frustum[3][1] + Frustum[3][2] * Frustum[3][2] );
+		Frustum[3][0] /= t;
+		Frustum[3][1] /= t;
+		Frustum[3][2] /= t;
+		Frustum[3][3] /= t;
 	
     	# /* Extract the FAR plane */
- 		Frustum[4][0] = clip[ 3] - clip[ 2];
- 		Frustum[4][1] = clip[ 7] - clip[ 6];
- 		Frustum[4][2] = clip[11] - clip[10];
- 		Frustum[4][3] = clip[15] - clip[14];
+		Frustum[4][0] = clip[ 3] - clip[ 2];
+		Frustum[4][1] = clip[ 7] - clip[ 6];
+		Frustum[4][2] = clip[11] - clip[10];
+		Frustum[4][3] = clip[15] - clip[14];
 	
     	# /* Normalize the result */
- 		t = sqrt( (Frustum[4][0] * Frustum[4][0]) + (Frustum[4][1] * Frustum[4][1]) + (Frustum[4][2] * Frustum[4][2]) );
- 		Frustum[4][0] /= t;
- 		Frustum[4][1] /= t;
- 		Frustum[4][2] /= t;
- 		Frustum[4][3] /= t;
+		t = sqrt( (Frustum[4][0] * Frustum[4][0]) + (Frustum[4][1] * Frustum[4][1]) + (Frustum[4][2] * Frustum[4][2]) );
+		Frustum[4][0] /= t;
+		Frustum[4][1] /= t;
+		Frustum[4][2] /= t;
+		Frustum[4][3] /= t;
 	
     	# /* Extract the NEAR plane */
- 		Frustum[5][0] = clip[ 3] + clip[ 2];
- 		Frustum[5][1] = clip[ 7] + clip[ 6];
- 		Frustum[5][2] = clip[11] + clip[10];
- 		Frustum[5][3] = clip[15] + clip[14];
+		Frustum[5][0] = clip[ 3] + clip[ 2];
+		Frustum[5][1] = clip[ 7] + clip[ 6];
+		Frustum[5][2] = clip[11] + clip[10];
+		Frustum[5][3] = clip[15] + clip[14];
 	
  		# /* Normalize the result */
- 		t = sqrt( Frustum[5][0] * Frustum[5][0] + Frustum[5][1] * Frustum[5][1] + Frustum[5][2] * Frustum[5][2] );
- 		Frustum[5][0] /= t;
- 		Frustum[5][1] /= t;
- 		Frustum[5][2] /= t;
- 		Frustum[5][3] /= t;
+		t = sqrt( Frustum[5][0] * Frustum[5][0] + Frustum[5][1] * Frustum[5][1] + Frustum[5][2] * Frustum[5][2] );
+		Frustum[5][0] /= t;
+		Frustum[5][1] /= t;
+		Frustum[5][2] /= t;
+		Frustum[5][3] /= t;
 
 		return
 	
@@ -444,13 +444,13 @@ class glCamera:
 		Frustum = self.m_Frustum
 		# // The idea here is the same as the PointInFrustum function.
 		if (Radius != 0):
-			for i in xrange (6):
+			for i in iter(range (6)):
 			# // If the point is outside of the plane then its not in the viewing volume.
 				if(Frustum[i][0] * p.x + Frustum[i][1] * p.y + Frustum[i][2] * p.z + Frustum[i][3] <= -Radius):
 					return(False);
 		else:
 			# // The idea here is the same as the PointInFrustum function.
-			for i in xrange (6):
+			for i in iter(range (6)):
 				# // If the point is outside of the plane then its not in the viewing volume.
 				if(Frustum[i][0] * p.x + Frustum[i][1] * p.y + Frustum[i][2] * p.z + Frustum[i][3] <= 0):
 					return(False);
@@ -490,8 +490,8 @@ class glCamera:
 
 		# ### Viewport is the rectangle of window pixels that OpenGL is rasterizing into.
 		viewport = glGetIntegerv (GL_VIEWPORT);						# //get actual viewport
-  		mvmatrix = glGetDoublev (GL_MODELVIEW_MATRIX);				# //get actual model view matrix
-  		projmatrix = glGetDoublev (GL_PROJECTION_MATRIX);			# //get actual projiection matrix
+		mvmatrix = glGetDoublev (GL_MODELVIEW_MATRIX);				# //get actual model view matrix
+		projmatrix = glGetDoublev (GL_PROJECTION_MATRIX);			# //get actual projiection matrix
 
 		# // this asks OGL to guess the 2d position of a 3d point inside the viewport
 		winx, winy, winz = gluProject(p.x, p.y, p.z, mvmatrix, projmatrix, viewport)
