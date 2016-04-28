@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3.4
 
 # This is statement is required by the build system to query build info
 if __name__ == '__build__':
@@ -6,8 +6,8 @@ if __name__ == '__build__':
 
 
 import string
-__version__ = string.split('$Revision: 1.1.1.1 $')[1]
-__date__ = string.join(string.split('$Date: 2007/02/15 19:25:38 $')[1:3], ' ')
+__version__ = '$Revision: 1.1.1.1 $'.split()[1]
+__date__ = '$Date: 2007/02/15 19:25:38 $'.split()[1:3]
 __author__ = 'Tarn Weisner Burton <twburton@users.sourceforge.net>'
 
 from OpenGL.GL import *
